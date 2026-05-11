@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Animated Class Portal</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+/* BODY */
+
+body{
+
+    background:linear-gradient(-45deg,
+    #ff0066,
+    #6a11cb,
+    #2575fc,
+    #00c9a7);
+
+    background-size:400% 400%;
+
+    animation:bgAnimation 12s ease infinite;
+
+    overflow-x:hidden;
+}
+
+/* Background Animation */
+
+@keyframes bgAnimation{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+/* Floating Circles */
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    animation:float 8s infinite ease-in-out;
+}
+
+.circle1{
+    width:180px;
+    height:180px;
+    top:5%;
+    left:5%;
+}
+
+.circle2{
+    width:250px;
+    height:250px;
+    bottom:10%;
+    right:5%;
+}
+
+.circle3{
+    width:100px;
+    height:100px;
+    top:60%;
+    left:40%;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-30px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* LOGIN PAGE */
+
+#loginPage{
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+/* Login Box */
+
+.login-container{
+
+    width:360px;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(10px);
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+
+    animation:fadeIn 1s ease;
+}
+
+.login-container h2{
+
+    color:white;
+
+    margin-bottom:25px;
+
+    font-size:35px;
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin:12px 0;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    background:rgba(255,255,255,0.2);
+
+    color:white;
+
+    font-size:16px;
+}
+
+input::placeholder{
+    color:#eee;
+}
+
+input:focus{
+
+    background:rgba(255,255,255,0.35);
+
+    transform:scale(1.03);
+}
+
+/* Buttons */
+
+.login-btn,
+button{
+
+    padding:13px 20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:linear-gradient(90deg,#ff512f,#dd2476);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    margin-top:15px;
+
+    transition:0.3s;
+}
+
+.login-btn:hover,
+button:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+#error{
+
+    margin-top:10px;
+
+    color:yellow;
+}
+
+/* MAIN WEBSITE */
+
+#mainWebsite{
+    display:none;
+}
+
+/* HEADER */
+
+header{
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    padding:25px;
+
+    text-align:center;
+
+    animation:slideDown 1s ease;
+}
+
+header h1{
+    font-size:40px;
+}
+
+/* NAVBAR */
+
+nav{
+
+    background:rgba(0,0,0,0.3);
+
+    padding:15px;
+
+    text-align:center;
+
+    backdrop-filter:blur(8px);
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:15px;
+
+    font-size:18px;
+
+    transition:0.3s;
+}
+
+nav a:hover{
+
+    color:yellow;
+
+    letter-spacing:1px;
+}
+
+/* CONTAINER */
+
+.container{
+
+    width:90%;
+
+    margin:auto;
+
+    padding:20px;
+}
+
+/* CARDS */
+
+.card{
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(10px);
+
+    padding:25px;
+
+    margin-top:25px;
+
+    border-radius:20px;
+
+    color:white;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+
+    animation:fadeUp 1s ease;
+
+    transition:0.4s;
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,0.4);
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+/* DOWNLOAD BUTTON */
+
+.download-btn{
+
+    display:inline-block;
+
+    padding:12px 18px;
+
+    background:linear-gradient(90deg,#00ff87,#60efff);
+
+    color:black;
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    margin-top:10px;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.download-btn:hover{
+
+    transform:scale(1.1);
+}
+
+/* TABLE */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+}
+
+table,th,td{
+
+    border:1px solid rgba(255,255,255,0.3);
+}
+
+th{
+
+    background:rgba(255,255,255,0.2);
+
+    padding:12px;
+
+    color:white;
+}
+
+td{
+
+    padding:12px;
+
+    text-align:center;
+
+    color:white;
+}
+
+/* FOOTER */
+
+footer{
+
+    margin-top:30px;
+
+    background:rgba(0,0,0,0.3);
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+}
+
+/* Animations */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:scale(0.8);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes slideDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Background Circles -->
+
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage">
+
+    <div class="login-container">
+
+        <h2>2nd year CSE-B Login</h2>
+
+        <input type="text"
+               id="username"
+               placeholder="Enter Username">
+
+        <input type="password"
+               id="password"
+               placeholder="Enter Password">
+
+        <button class="login-btn"
+                onclick="login()">
+
+            Login
+
+        </button>
+
+        <p id="error"></p>
+
+    </div>
+
+</div>
+
+<!-- MAIN WEBSITE -->
+
+<div id="mainWebsite">
+
+<header>
+
+    <h1>Welcome to CSE-B Classroom</h1>
+
+    <p>Student Portal</p>
+
+</header>
+
+<nav>
+
+    <a href="#">Home</a>
+
+    <a href="#">Subjects</a>
+
+    <a href="#">Notes</a>
+
+    <a href="#">Attendance</a>
+
+    <a href="#">Contact</a>
+
+</nav>
+
+<div class="container">
+
+    <!-- About -->
+
+    <div class="card">
+
+        <h2>About Our Class</h2>
+
+        <p>
+            This webpage contains notes,
+            attendance, fees and announcements.
+        </p>
+
+    </div>
+
+    <!-- Subjects -->
+
+    <div class="card">
+
+        <h2>Subjects</h2>
+
+        <ul>
+          
+            <li>Design & Analysis Of Algorithm</li>
+
+            <li>Operating System</li>
+
+            <li>Machine Learning</li>
+
+            <li>Computer Networks</li>
+
+            <li>Environmental Science</li>
+
+        </ul>
+
+    </div>
+
+    <!-- Notes -->
+
+    <div class="card">
+
+        <h2>Download Notes</h2>
+
+        <p>Operating System Notes</p>
+
+        <a href="files/os-notes.pdf"
+           download
+           class="download-btn">
+
+           Download
+
+        </a>
+
+        <br><br>
+
+        <p>Machine Learning Notes</p>
+
+        <a href="files/ml-notes.pdf"
+           download
+           class="download-btn">
+
+           Download
+
+        </a>
+
+    </div>
+
+    <!-- Attendance -->
+
+    <div class="card">
+
+        <h2>Attendance</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Roll No</th>
+
+
+                <th>Attendance</th>
+                
+                <th>Fees</th>
+
+            </tr>
+
+            <tr>
+
+                <td>101</td>
+
+
+                <td>92%</td>
+                
+                <td>52000</td>
+
+            </tr>
+
+            <tr>
+
+                <td>102</td>
+
+
+                <td>88%</td>
+                
+                <td>-27500</td>
+
+            </tr>
+
+            <tr>
+
+                <td>103</td>
+
+
+                <td>95%</td>
+                <td>5400</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- Announcement -->
+
+    <div class="card">
+
+        <h2>Announcement</h2>
+
+        <p>
+            Semester exams start from Thursday.
+        </p>
+
+
+    </div>
+
+</div>
+
+<footer>
+
+    <p>© 2026 Created by Maadhesh B</p>
+
+</footer>
+
+</div>
+
+<script>
+
+/* LOGIN FUNCTION */
+
+function login(){
+
+    let user =
+    document.getElementById("username").value;
+
+    let pass =
+    document.getElementById("password").value;
+
+    let users = [
+
+        {
+            username:"admin",
+            password:"1234"
+        },
+
+        {
+            username:"student1",
+            password:"1111"
+        },
+
+        {
+            username:"student2",
+            password:"2222"
+        },
+
+        {
+            username:"student3",
+            password:"3333"
+        }
+
+    ];
+
+    let validLogin = false;
+
+    for(let i=0;i<users.length;i++){
+
+        if(user === users[i].username &&
+           pass === users[i].password){
+
+            validLogin = true;
+
+            break;
+        }
+
+    }
+
+    if(validLogin){
+
+        document.getElementById("loginPage")
+        .style.display = "none";
+
+        document.getElementById("mainWebsite")
+        .style.display = "block";
+    }
+    else{
+
+        document.getElementById("error")
+        .innerHTML =
+        "Invalid Username or Password";
+    }
+}
+
+/* Announcement Button */
+
+function showMessage(){
+
+    alert("Welcome to our colorful class portal!");
+
+}
+
+</script>
+
+</body>
+</html>
