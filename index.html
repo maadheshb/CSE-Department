@@ -1,725 +1,3315 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSE Department | Dhanalakshmi Srinivasan Engineering College</title>
 
-<title>CSE Class Portal</title>
+    <style>
+
+        /* =====================================================
+           GOOGLE FONT
+        ===================================================== */
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-<style>
+
+        /* =====================================================
+           ROOT VARIABLES
+        ===================================================== */
+
+        :root {
+            --navy: #061a35;
+            --dark-blue: #092d52;
+            --blue: #087ea4;
+            --cyan: #18d5e5;
+            --light-blue: #eefaff;
+            --white: #ffffff;
+            --light: #f5f9fc;
+            --text: #17283b;
+            --muted: #64748b;
+            --border: #dce8f0;
+            --shadow: 0 15px 40px rgba(6, 26, 53, 0.10);
+            --radius: 18px;
+            --transition: 0.3s ease;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+        body {
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+        }
 
-/* BODY */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-body{
+        img {
+            max-width: 100%;
+        }
 
-    background:linear-gradient(-45deg,
-    #ff0066,
-    #6a11cb,
-    #2575fc,
-    #00c9a7);
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
 
-    background-size:400% 400%;
 
-    animation:bgAnimation 12s ease infinite;
+        /* =====================================================
+           HEADER
+        ===================================================== */
 
-    overflow-x:hidden;
-}
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
 
-/* Background Animation */
+            background: rgba(6, 26, 53, 0.96);
+            backdrop-filter: blur(15px);
 
-@keyframes bgAnimation{
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
 
-    0%{
-        background-position:0% 50%;
-    }
+        .nav-container {
+            min-height: 78px;
 
-    50%{
-        background-position:100% 50%;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    100%{
-        background-position:0% 50%;
-    }
-}
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: white;
+        }
 
-/* Floating Circles */
+        .logo-box {
+            width: 50px;
+            height: 50px;
 
-.circle{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,0.12);
-    animation:float 8s infinite ease-in-out;
-}
+            display: grid;
+            place-items: center;
 
-.circle1{
-    width:180px;
-    height:180px;
-    top:5%;
-    left:5%;
-}
+            background: linear-gradient(
+                135deg,
+                var(--cyan),
+                var(--blue)
+            );
 
-.circle2{
-    width:250px;
-    height:250px;
-    bottom:10%;
-    right:5%;
-}
+            color: var(--navy);
 
-.circle3{
-    width:100px;
-    height:100px;
-    top:60%;
-    left:40%;
-}
+            border-radius: 12px;
 
-@keyframes float{
+            font-weight: 800;
+            font-size: 15px;
+        }
 
-    0%{
-        transform:translateY(0px);
-    }
+        .logo h2 {
+            font-size: 15px;
+            line-height: 1.2;
+        }
 
-    50%{
-        transform:translateY(-30px);
-    }
+        .logo small {
+            display: block;
+            color: #9db2c7;
+            font-size: 9px;
+            margin-top: 3px;
+        }
 
-    100%{
-        transform:translateY(0px);
-    }
-}
+        nav {
+            display: flex;
+            gap: 4px;
+        }
 
-/* LOGIN PAGE */
+        nav a {
+            color: #dce8f2;
 
-#loginPage{
+            padding: 8px 9px;
 
-    height:100vh;
+            font-size: 11px;
+            font-weight: 600;
 
-    display:flex;
+            transition: var(--transition);
+        }
 
-    justify-content:center;
+        nav a:hover {
+            color: var(--cyan);
+        }
 
-    align-items:center;
-}
+        #menu {
+            display: none;
+        }
 
-/* Login Box */
+        .menu-btn {
+            display: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
 
-.login-container{
 
-    width:360px;
+        /* =====================================================
+           HERO
+        ===================================================== */
 
-    padding:40px;
+        .hero {
+            min-height: 680px;
 
-    border-radius:20px;
+            display: flex;
+            align-items: center;
 
-    background:rgba(255,255,255,0.15);
+            position: relative;
+            overflow: hidden;
 
-    backdrop-filter:blur(10px);
+            color: white;
 
-    text-align:center;
+            background:
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(24,213,229,0.18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #04152c,
+                    #092d52,
+                    #064257
+                );
+        }
 
-    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+        .hero::before {
+            content: "";
 
-    animation:fadeIn 1s ease;
-}
+            position: absolute;
 
-.login-container h2{
+            width: 500px;
+            height: 500px;
 
-    color:white;
+            right: -200px;
+            top: -160px;
 
-    margin-bottom:25px;
+            border: 1px solid rgba(24,213,229,0.25);
 
-    font-size:35px;
-}
+            border-radius: 50%;
 
-input{
+            box-shadow:
+                0 0 0 60px rgba(24,213,229,0.03),
+                0 0 0 120px rgba(24,213,229,0.02);
+        }
 
-    width:100%;
+        .hero-content {
+            position: relative;
+            z-index: 2;
 
-    padding:14px;
+            display: grid;
 
-    margin:12px 0;
+            grid-template-columns: 1.1fr 0.9fr;
 
-    border:none;
+            align-items: center;
 
-    border-radius:10px;
+            gap: 70px;
 
-    outline:none;
+            padding: 100px 0;
+        }
 
-    background:rgba(255,255,255,0.2);
+        .badge {
+            display: inline-block;
 
-    color:white;
+            padding: 7px 14px;
 
-    font-size:16px;
-}
+            margin-bottom: 20px;
 
-input::placeholder{
-    color:#eee;
-}
+            border: 1px solid rgba(24,213,229,0.45);
 
-input:focus{
+            border-radius: 30px;
 
-    background:rgba(255,255,255,0.35);
+            color: #8cf3fa;
 
-    transform:scale(1.03);
-}
+            font-size: 10px;
+            font-weight: 800;
 
-/* Buttons */
+            letter-spacing: 1.5px;
+        }
 
-.login-btn,
-button{
+        .hero h1 {
+            font-size: clamp(40px, 5vw, 68px);
 
-    padding:13px 20px;
+            line-height: 1.08;
 
-    border:none;
+            letter-spacing: -2px;
+        }
 
-    border-radius:10px;
+        .hero h1 span {
+            color: var(--cyan);
+        }
 
-    background:linear-gradient(90deg,#ff512f,#dd2476);
+        .tagline {
+            margin-top: 22px;
 
-    color:white;
+            color: #bcebf1;
 
-    cursor:pointer;
+            font-size: 20px;
+            font-weight: 600;
+        }
 
-    font-size:16px;
+        .description {
+            max-width: 650px;
 
-    margin-top:15px;
+            margin-top: 12px;
 
-    transition:0.3s;
-}
+            color: #a9bed0;
 
-.login-btn:hover,
-button:hover{
+            font-size: 14px;
+        }
 
-    transform:scale(1.08);
+        .buttons {
+            display: flex;
 
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
+            gap: 14px;
 
-#error{
+            margin-top: 30px;
+        }
 
-    margin-top:10px;
+        .btn {
+            display: inline-flex;
 
-    color:yellow;
-}
+            align-items: center;
+            justify-content: center;
 
-/* MAIN WEBSITE */
+            min-height: 48px;
 
-#mainWebsite{
-    display:none;
-}
+            padding: 0 22px;
 
-/* HEADER */
+            border-radius: 10px;
 
-header{
+            font-size: 12px;
+            font-weight: 700;
 
-    background:rgba(255,255,255,0.15);
+            transition: var(--transition);
+        }
 
-    backdrop-filter:blur(10px);
+        .primary {
+            background: var(--cyan);
+            color: var(--navy);
+        }
 
-    color:white;
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(24,213,229,0.25);
+        }
 
-    padding:25px;
+        .outline {
+            border: 1px solid rgba(255,255,255,0.35);
+            color: white;
+        }
 
-    text-align:center;
+        .outline:hover {
+            background: white;
+            color: var(--navy);
+        }
 
-    animation:slideDown 1s ease;
-}
 
-header h1{
-    font-size:40px;
-}
+        /* =====================================================
+           HERO CODE TERMINAL
+        ===================================================== */
 
-/* NAVBAR */
+        .hero-visual {
+            display: grid;
+            place-items: center;
+        }
 
-nav{
+        .code-box {
+            width: 420px;
+            max-width: 100%;
 
-    background:rgba(0,0,0,0.3);
+            background: #061326;
 
-    padding:15px;
+            border-radius: 18px;
 
-    text-align:center;
+            border: 1px solid rgba(255,255,255,0.12);
 
-    backdrop-filter:blur(8px);
-}
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
 
-nav a{
+            animation: float 5s ease-in-out infinite;
+        }
 
-    color:white;
+        .code-header {
+            height: 42px;
 
-    text-decoration:none;
+            display: flex;
+            align-items: center;
 
-    margin:15px;
+            gap: 7px;
 
-    font-size:18px;
+            padding: 0 15px;
 
-    transition:0.3s;
-}
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
 
-nav a:hover{
+        .code-header span {
+            width: 10px;
+            height: 10px;
 
-    color:yellow;
+            border-radius: 50%;
 
-    letter-spacing:1px;
-}
+            background: #547085;
+        }
 
-/* CONTAINER */
+        .code {
+            padding: 30px;
 
-.container{
+            font-family: Consolas, monospace;
 
-    width:90%;
+            color: #d8e6ef;
 
-    margin:auto;
+            font-size: 14px;
+        }
 
-    padding:20px;
-}
+        .code p {
+            margin: 12px 0;
+        }
 
-/* CARDS */
+        .indent {
+            padding-left: 30px;
+        }
 
-.card{
+        .purple {
+            color: #d99cff;
+        }
 
-    background:rgba(255,255,255,0.15);
+        .cyan-text {
+            color: var(--cyan);
+        }
 
-    backdrop-filter:blur(10px);
 
-    padding:25px;
+        /* =====================================================
+           SECTIONS
+        ===================================================== */
 
-    margin-top:25px;
+        section {
+            padding: 100px 0;
+        }
 
-    border-radius:20px;
+        .heading {
+            max-width: 720px;
 
-    color:white;
+            margin: 0 auto 55px;
 
-    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+        }
 
-    animation:fadeUp 1s ease;
+        .heading span {
+            color: var(--blue);
 
-    transition:0.4s;
-}
+            font-size: 10px;
+            font-weight: 800;
 
-.card:hover{
+            letter-spacing: 2px;
+        }
 
-    transform:translateY(-10px);
+        .heading h2 {
+            margin-top: 5px;
 
-    box-shadow:0 12px 25px rgba(0,0,0,0.4);
-}
+            color: var(--navy);
 
-.card h2{
-    margin-bottom:15px;
-}
+            font-size: clamp(30px, 4vw, 44px);
 
-/* DOWNLOAD BUTTON */
+            line-height: 1.2;
+        }
 
-.download-btn{
+        .heading h2 strong {
+            color: var(--blue);
+        }
 
-    display:inline-block;
+        .heading p {
+            margin-top: 12px;
 
-    padding:12px 18px;
+            color: var(--muted);
 
-    background:linear-gradient(90deg,#00ff87,#60efff);
+            font-size: 13px;
+        }
 
-    color:black;
 
-    text-decoration:none;
+        /* =====================================================
+           ABOUT
+        ===================================================== */
 
-    border-radius:8px;
+        #about {
+            background: var(--light);
+        }
 
-    margin-top:10px;
+        .about-grid {
+            display: grid;
 
-    font-weight:bold;
+            grid-template-columns: 1.4fr 1fr;
 
-    transition:0.3s;
-}
+            gap: 25px;
+        }
 
-.download-btn:hover{
+        .card {
+            padding: 32px;
 
-    transform:scale(1.1);
-}
+            background: white;
 
-/* TABLE */
+            border: 1px solid var(--border);
 
-table{
+            border-radius: var(--radius);
 
-    width:100%;
+            box-shadow: var(--shadow);
 
-    border-collapse:collapse;
+            transition: var(--transition);
+        }
 
-    margin-top:15px;
-}
+        .card:hover {
+            transform: translateY(-6px);
+        }
 
-table,th,td{
+        .main-about {
+            grid-row: span 2;
+        }
 
-    border:1px solid rgba(255,255,255,0.3);
-}
+        .icon {
+            width: 55px;
+            height: 55px;
 
-th{
+            display: grid;
+            place-items: center;
 
-    background:rgba(255,255,255,0.2);
+            margin-bottom: 20px;
 
-    padding:12px;
+            background: var(--light-blue);
 
-    color:white;
-}
+            border-radius: 14px;
 
-td{
+            font-size: 25px;
+        }
 
-    padding:12px;
+        .card h3 {
+            margin-bottom: 12px;
 
-    text-align:center;
+            color: var(--navy);
 
-    color:white;
-}
+            font-size: 20px;
+        }
 
-/* FOOTER */
+        .card p {
+            color: var(--muted);
 
-footer{
+            font-size: 13px;
+        }
 
-    margin-top:30px;
 
-    background:rgba(0,0,0,0.3);
+        /* =====================================================
+           DEPARTMENT STATISTICS
+        ===================================================== */
 
-    color:white;
+        .stats {
+            display: grid;
 
-    text-align:center;
+            grid-template-columns: repeat(4, 1fr);
 
-    padding:20px;
-}
+            gap: 18px;
 
-/* Animations */
+            margin-top: 30px;
+        }
 
-@keyframes fadeIn{
+        .stat {
+            padding: 25px;
 
-    from{
-        opacity:0;
-        transform:scale(0.8);
-    }
+            text-align: center;
 
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
+            background: white;
 
-@keyframes slideDown{
+            border: 1px solid var(--border);
 
-    from{
-        opacity:0;
-        transform:translateY(-50px);
-    }
+            border-radius: 15px;
 
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+            box-shadow: var(--shadow);
+        }
 
-@keyframes fadeUp{
+        .stat strong {
+            display: block;
 
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
+            color: var(--blue);
 
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+            font-size: 30px;
+        }
 
-</style>
+        .stat span {
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           PROGRAMS
+        ===================================================== */
+
+        .grid-3 {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .program {
+            padding: 35px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            box-shadow: var(--shadow);
+
+            transition: var(--transition);
+        }
+
+        .program:hover {
+            transform: translateY(-8px);
+        }
+
+        .program-icon {
+            width: 65px;
+            height: 65px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 20px;
+
+            background: var(--light-blue);
+
+            border-radius: 16px;
+
+            font-size: 30px;
+        }
+
+        .program small {
+            color: var(--blue);
+
+            font-weight: 800;
+
+            font-size: 10px;
+        }
+
+        .program h3 {
+            margin: 10px 0;
+
+            color: var(--navy);
+
+            font-size: 19px;
+        }
+
+        .program p {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           FACULTY
+        ===================================================== */
+
+        #faculty {
+            background: var(--light);
+        }
+
+        .faculty-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .faculty {
+            overflow: hidden;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            box-shadow: var(--shadow);
+
+            transition: var(--transition);
+        }
+
+        .faculty:hover {
+            transform: translateY(-8px);
+        }
+
+        .faculty-photo {
+            height: 210px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b3156,
+                    #087e8d
+                );
+
+            font-size: 75px;
+        }
+
+        .faculty-info {
+            padding: 23px;
+        }
+
+        .faculty-info h3 {
+            color: var(--navy);
+
+            font-size: 17px;
+        }
+
+        .designation {
+            color: var(--blue);
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .faculty-info p {
+            margin-top: 8px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           FACILITIES / LABS
+        ===================================================== */
+
+        .facility {
+            padding: 30px;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            box-shadow: var(--shadow);
+
+            transition: var(--transition);
+        }
+
+        .facility:hover {
+            transform: translateY(-7px);
+        }
+
+        .facility-icon {
+            font-size: 35px;
+
+            margin-bottom: 15px;
+        }
+
+        .facility h3 {
+            color: var(--navy);
+
+            margin-bottom: 8px;
+
+            font-size: 18px;
+        }
+
+        .facility p {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           RESEARCH
+        ===================================================== */
+
+        #research {
+            background: var(--light);
+        }
+
+        .research-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .research-card {
+            padding: 25px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            box-shadow: var(--shadow);
+
+            text-align: center;
+
+            transition: var(--transition);
+        }
+
+        .research-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .research-card div {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+        .research-card h3 {
+            color: var(--navy);
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           ACHIEVEMENTS
+        ===================================================== */
+
+        #achievements {
+            background:
+                linear-gradient(
+                    135deg,
+                    #04152c,
+                    #092d52
+                );
+
+            color: white;
+        }
+
+        .achievement-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .achievement {
+            padding: 32px 15px;
+
+            text-align: center;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.04);
+
+            transition: var(--transition);
+        }
+
+        .achievement:hover {
+            transform: translateY(-8px);
+
+            border-color: var(--cyan);
+        }
+
+        .achievement strong {
+            color: var(--cyan);
+
+            font-size: 32px;
+        }
+
+        .achievement p {
+            color: #b2c5d4;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           EVENTS
+        ===================================================== */
+
+        .events {
+            max-width: 950px;
+
+            margin: auto;
+        }
+
+        .event {
+            display: grid;
+
+            grid-template-columns: 75px 1fr;
+
+            align-items: center;
+
+            gap: 22px;
+
+            margin-bottom: 18px;
+
+            padding: 22px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            box-shadow: var(--shadow);
+
+            transition: var(--transition);
+        }
+
+        .event:hover {
+            transform: translateX(7px);
+        }
+
+        .date {
+            width: 65px;
+            height: 70px;
+
+            display: grid;
+            place-items: center;
+
+            background: var(--navy);
+
+            color: white;
+
+            border-radius: 13px;
+
+            text-align: center;
+        }
+
+        .date strong {
+            font-size: 24px;
+        }
+
+        .date span {
+            color: var(--cyan);
+
+            font-size: 9px;
+        }
+
+        .event h3 {
+            color: var(--navy);
+
+            font-size: 16px;
+        }
+
+        .event p {
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+
+        #projects {
+            background: var(--light);
+        }
+
+        .project {
+            overflow: hidden;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            box-shadow: var(--shadow);
+
+            transition: var(--transition);
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-image {
+            height: 175px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b3156,
+                    #097e8d
+                );
+
+            font-size: 65px;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content small {
+            color: var(--blue);
+
+            font-weight: 800;
+
+            font-size: 9px;
+        }
+
+        .project-content h3 {
+            margin: 8px 0;
+
+            color: var(--navy);
+
+            font-size: 18px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 6px;
+
+            margin: 17px 0;
+        }
+
+        .tags span {
+            padding: 4px 8px;
+
+            background: var(--light-blue);
+
+            color: var(--blue);
+
+            border-radius: 5px;
+
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           NOTICE
+        ===================================================== */
+
+        .notices {
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+        .notice {
+            display: grid;
+
+            grid-template-columns: 50px 1fr auto;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 18px;
+
+            margin-bottom: 12px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .notice-icon {
+            width: 45px;
+            height: 45px;
+
+            display: grid;
+            place-items: center;
+
+            background: var(--light-blue);
+
+            border-radius: 11px;
+        }
+
+        .notice h3 {
+            color: var(--navy);
+
+            font-size: 14px;
+        }
+
+        .notice p {
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+        .notice small {
+            color: #8496a5;
+        }
+
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        #contact {
+            background: var(--light);
+        }
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns: 0.9fr 1.1fr;
+
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 25px;
+
+            justify-content: center;
+        }
+
+        .contact-item {
+            display: flex;
+
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            background: var(--light-blue);
+
+            border-radius: 12px;
+        }
+
+        .contact-item h3 {
+            color: var(--navy);
+
+            font-size: 15px;
+        }
+
+        .contact-item p {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+        .map {
+            min-height: 380px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 20px;
+
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    #dfecef,
+                    #dfecef 20px,
+                    #d5e5e8 20px,
+                    #d5e5e8 40px
+                );
+        }
+
+        .map-content {
+            padding: 30px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.95);
+
+            border-radius: 16px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .map-content div {
+            font-size: 40px;
+        }
+
+        .map-content h3 {
+            color: var(--navy);
+
+            margin-bottom: 5px;
+        }
+
+        .map-content p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            background: #041226;
+
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr 1fr;
+
+            gap: 50px;
+
+            padding: 70px 0;
+        }
+
+        footer h3 {
+            font-size: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #879bad;
+
+            font-size: 11px;
+        }
+
+        footer a {
+            display: block;
+
+            margin-top: 8px;
+
+            transition: var(--transition);
+        }
+
+        footer a:hover {
+            color: var(--cyan);
+        }
+
+        .social {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+        .social a {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 8px;
+
+            color: white;
+        }
+
+        .footer-bottom {
+            padding: 18px 0;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media(max-width:1000px) {
+
+            nav a {
+                font-size: 9px;
+
+                padding: 7px 5px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 500px;
+
+                width: 100%;
+
+                margin: auto;
+            }
+
+            .faculty-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .research-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .grid-3 {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .achievement-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media(max-width:768px) {
+
+            .nav-container {
+                min-height: 70px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+
+                position: absolute;
+
+                top: 70px;
+                left: 0;
+                right: 0;
+
+                flex-direction: column;
+
+                padding: 15px;
+
+                background: var(--navy);
+            }
+
+            #menu:checked ~ nav {
+                display: flex;
+            }
+
+            nav a {
+                padding: 12px 15px;
+
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-about {
+                grid-row: auto;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .grid-3,
+            .faculty-grid,
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media(max-width:480px) {
+
+            .logo h2 {
+                font-size: 11px;
+            }
+
+            .logo small {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat {
+                padding: 18px 10px;
+            }
+
+            .achievement strong {
+                font-size: 27px;
+            }
+
+            .notice {
+                grid-template-columns: 42px 1fr;
+            }
+
+            .notice small {
+                display: none;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<!-- Background Circles -->
 
-<div class="circle circle1"></div>
-<div class="circle circle2"></div>
-<div class="circle circle3"></div>
+    <!-- =====================================================
+         HEADER / NAVIGATION
+    ===================================================== -->
 
-<!-- LOGIN PAGE -->
+    <header>
 
-<div id="loginPage">
+        <div class="container nav-container">
 
-    <div class="login-container">
+            <a href="#home" class="logo">
 
-        <h2>2nd year CSE-B Login</h2>
+                <div class="logo-box">
+                    CSE
+                </div>
 
-        <input type="text"
-               id="username"
-               placeholder="Enter Username">
+                <div>
+                    <h2>
+                        Dhanalakshmi Srinivasan
+                        Engineering College
+                    </h2>
 
-        <input type="password"
-               id="password"
-               placeholder="Enter Password">
+                    <small>
+                        Department of Computer Science & Engineering
+                    </small>
+                </div>
 
-        <button class="login-btn"
-                onclick="login()">
+            </a>
 
-            Login
 
-        </button>
+            <!-- Mobile menu -->
 
-        <p id="error"></p>
+            <input type="checkbox" id="menu">
 
-    </div>
+            <label for="menu" class="menu-btn">
+                ☰
+            </label>
 
-</div>
 
-<!-- MAIN WEBSITE -->
+            <nav>
 
-<div id="mainWebsite">
+                <a href="#home">Home</a>
 
-<header>
+                <a href="#about">About</a>
 
-    <h1>Welcome to CSE-B Classroom</h1>
-    
-    <p>incharge:Chinnadurai sir</p>
+                <a href="#faculty">Faculty</a>
 
-   
-    <p>Student Portal</p>
+                <a href="#programs">Programs</a>
 
-</header>
+                <a href="#facilities">Facilities</a>
 
-<nav>
+                <a href="#research">Research</a>
 
-    <a href="#home">Home</a>
+                <a href="#projects">Projects</a>
 
-    <a href="#subjects">Subjects</a>
+                <a href="#achievements">Achievements</a>
 
-    <a href="#notes">Notes</a>
+                <a href="#contact">Contact</a>
 
-    <a href="#attendance">Attendance</a>
+            </nav>
 
-    <a href="#contact">Contact</a>
+        </div>
 
-</nav>
+    </header>
 
-<div class="container">
 
-    <!-- About -->
 
-    <div class="card">
+    <main>
 
-        <h2>About Our Class</h2>
 
-        <p>
-            This webpage contains notes,
-            attendance, fees and announcements.
-        </p>
+        <!-- =====================================================
+             HERO SECTION
+        ===================================================== -->
 
-    </div>
+        <section class="hero" id="home">
 
-    <!-- Subjects -->
+            <div class="container hero-content">
 
-    <div class="card">
 
-        <h2>Subjects</h2>
+                <div>
 
-        <ul>
-          
-            <li>Design & Analysis Of Algorithm</li>
+                    <span class="badge">
+                        DHANALAKSHMI SRINIVASAN ENGINEERING COLLEGE
+                    </span>
 
-            <li>Operating System</li>
 
-            <li>Machine Learning</li>
+                    <h1>
 
-            <li>Computer Networks</li>
+                        Department of
+                        <span>
+                            Computer Science
+                        </span>
+                        and Engineering
 
-            <li>Environmental Science</li>
+                    </h1>
 
-        </ul>
 
-    </div>
+                    <p class="tagline">
 
-    <!-- Notes -->
+                        Innovating Technology,
+                        Inspiring the Future
 
-    <div class="card">
+                    </p>
 
-        <h2>Download Notes</h2>
 
-        <p>Operating System Notes</p>
+                    <p class="description">
 
-        <a href="files/os-notes.pdf"
-           download
-           class="download-btn">
+                        The Department of Computer Science and Engineering
+                        provides quality education, experiential learning,
+                        research opportunities and industry exposure to
+                        develop skilled software professionals, researchers
+                        and entrepreneurs.
 
-           Download
+                    </p>
 
-        </a>
 
-        <br><br>
+                    <div class="buttons">
 
-        <p>Machine Learning Notes</p>
+                        <a href="#about" class="btn primary">
+                            Explore Department →
+                        </a>
 
-        <a href="files/ml-notes.pdf"
-           download
-           class="download-btn">
+                        <a href="#contact" class="btn outline">
+                            Contact Department
+                        </a>
 
-           Download
+                    </div>
 
-        </a>
+                </div>
 
-    </div>
 
-    <!-- Attendance -->
 
-    <div class="card">
+                <!-- Technology visual -->
 
-        <h2>Attendance</h2>
+                <div class="hero-visual">
 
-        <table>
+                    <div class="code-box">
 
-            <tr>
+                        <div class="code-header">
 
-                <th>Roll No</th>
+                            <span></span>
+                            <span></span>
+                            <span></span>
 
+                        </div>
 
-                <th>Attendance</th>
-                
-                <th>Fees</th>
 
-            </tr>
+                        <div class="code">
 
-            <tr>
+                            <p>
+                                <span class="purple">class</span>
+                                <span class="cyan-text">
+                                    CSE
+                                </span> {
+                            </p>
 
-                <td>77</td>
+                            <p class="indent">
+                                <span class="purple">
+                                    learn
+                                </span>();
+                            </p>
 
+                            <p class="indent">
+                                <span class="purple">
+                                    innovate
+                                </span>();
+                            </p>
 
-                <td>92%</td>
-                
-                <td>52000</td>
+                            <p class="indent">
+                                <span class="purple">
+                                    research
+                                </span>();
+                            </p>
 
-            </tr>
+                            <p class="indent">
+                                <span class="purple">
+                                    create
+                                </span>();
+                            </p>
 
-            <tr>
+                            <p>
+                                }
+                            </p>
 
-                <td>79</td>
+                            <p class="cyan-text">
+                                // Future Starts Here
+                            </p>
 
+                        </div>
 
-                <td>88%</td>
-                
-                <td>500</td>
+                    </div>
 
-            </tr>
+                </div>
 
-            <tr>
+            </div>
 
-                <td>117</td>
+        </section>
 
 
-                <td>95%</td>
-                <td>5400</td>
 
-            </tr>
+        <!-- =====================================================
+             ABOUT DEPARTMENT
+        ===================================================== -->
 
-        </table>
+        <section id="about">
 
-    </div>
+            <div class="container">
 
-    <!-- Announcement -->
 
-    <div class="card">
+                <div class="heading">
 
-        <h2>Announcement</h2>
+                    <span>
+                        ABOUT THE DEPARTMENT
+                    </span>
 
-        <p>
-            From 5th semester onwards projects works will be assign for all(as team)
-        </p>
+                    <h2>
+                        Computer Science &
+                        <strong>Engineering</strong>
+                    </h2>
 
+                    <p>
+                        A department focused on experiential learning,
+                        innovation, research and industry-oriented education.
+                    </p>
 
-    </div>
+                </div>
 
-</div>
 
-<footer>
 
-    <p>© 2026 Created by Maadhesh B</p>
+                <div class="about-grid">
 
-</footer>
 
-</div>
+                    <article class="card main-about">
 
-<script>
+                        <div class="icon">
+                            💻
+                        </div>
 
-/* LOGIN FUNCTION */
+                        <h3>
+                            About CSE Department
+                        </h3>
 
-function login(){
+                        <p>
 
-    let user =
-    document.getElementById("username").value;
+                            The Department of Computer Science and Engineering
+                            was established in <strong>2001</strong> with an
+                            initial intake of 45 students.
 
-    let pass =
-    document.getElementById("password").value;
+                        </p>
 
-    let users = [
+                        <br>
 
-        {
-            username:"admin",
-            password:"1234"
-        },
+                        <p>
 
-        {
-            username:"student1",
-            password:"1111"
-        },
+                            The department later expanded its B.E. capacity
+                            to <strong>180 students</strong> in the academic
+                            year 2020–2021.
 
-        {
-            username:"student2",
-            password:"2222"
-        },
+                        </p>
 
-        {
-            username:"student3",
-            password:"3333"
-        }
+                        <br>
 
-    ];
+                        <p>
 
-    let validLogin = false;
+                            The PG programme in Computer Science began in
+                            <strong>2006</strong> with 18 seats.
 
-    for(let i=0;i<users.length;i++){
+                        </p>
 
-        if(user === users[i].username &&
-           pass === users[i].password){
+                        <br>
 
-            validLogin = true;
+                        <p>
 
-            break;
-        }
+                            The department received <strong>NBA
+                            accreditation in 2024</strong> and was recognized
+                            as a <strong>Research Centre in 2023</strong>.
 
-    }
+                        </p>
 
-    if(validLogin){
+                    </article>
 
-        document.getElementById("loginPage")
-        .style.display = "none";
 
-        document.getElementById("mainWebsite")
-        .style.display = "block";
-    }
-    else{
 
-        document.getElementById("error")
-        .innerHTML =
-        "Invalid Username or Password";
-    }
-}
+                    <article class="card">
 
-/* Announcement Button */
+                        <div class="icon">
+                            🔭
+                        </div>
 
-function showMessage(){
+                        <h3>
+                            Vision
+                        </h3>
 
-    alert("Welcome to our colorful class portal!");
+                        <p>
 
-}
+                            To produce globally competent, socially
+                            responsible professionals in the field of
+                            Computer Science and Engineering.
 
-</script>
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="card">
+
+                        <div class="icon">
+                            🎯
+                        </div>
+
+                        <h3>
+                            Mission
+                        </h3>
+
+                        <p>
+                            Experiential learning and software expertise.
+                        </p>
+
+                        <p>
+                            Industry exposure and interdisciplinary
+                            research skills.
+                        </p>
+
+                        <p>
+                            Development of software professionals,
+                            researchers and entrepreneurs.
+                        </p>
+
+                        <p>
+                            Innovation, lifelong learning and ethical
+                            responsibility.
+                        </p>
+
+                    </article>
+
+                </div>
+
+
+
+                <!-- Official CSE statistics -->
+
+                <div class="stats">
+
+
+                    <div class="stat">
+
+                        <strong>
+                            2001
+                        </strong>
+
+                        <span>
+                            Department Established
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            180
+                        </strong>
+
+                        <span>
+                            B.E. CSE Intake
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            18
+                        </strong>
+
+                        <span>
+                            M.E. CSE Intake
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            2024
+                        </strong>
+
+                        <span>
+                            NBA Accreditation
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PROGRAMS
+        ===================================================== -->
+
+        <section id="programs">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        ACADEMIC PROGRAMMES
+                    </span>
+
+                    <h2>
+                        CSE
+                        <strong>Programmes</strong>
+                    </h2>
+
+                    <p>
+                        Undergraduate, postgraduate and research opportunities
+                        in computer science.
+                    </p>
+
+                </div>
+
+
+
+                <div class="grid-3">
+
+
+                    <article class="program">
+
+                        <div class="program-icon">
+                            💻
+                        </div>
+
+                        <small>
+                            UNDERGRADUATE
+                        </small>
+
+                        <h3>
+                            B.E. Computer Science and Engineering
+                        </h3>
+
+                        <p>
+                            The flagship undergraduate programme with an
+                            approved intake of 180 students.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="program">
+
+                        <div class="program-icon">
+                            🔐
+                        </div>
+
+                        <small>
+                            UNDERGRADUATE
+                        </small>
+
+                        <h3>
+                            B.E. CSE – Cyber Security
+                        </h3>
+
+                        <p>
+                            An undergraduate programme focused on cybersecurity,
+                            secure systems and modern digital security.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="program">
+
+                        <div class="program-icon">
+                            🧠
+                        </div>
+
+                        <small>
+                            POSTGRADUATE
+                        </small>
+
+                        <h3>
+                            M.E. Computer Science and Engineering
+                        </h3>
+
+                        <p>
+                            Advanced postgraduate education in computer science
+                            with an approved intake of 18 students.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="program">
+
+                        <div class="program-icon">
+                            🔬
+                        </div>
+
+                        <small>
+                            RESEARCH
+                        </small>
+
+                        <h3>
+                            Ph.D. Computer Science
+                        </h3>
+
+                        <p>
+                            Research opportunities in advanced computing and
+                            emerging technology areas.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FACULTY
+        ===================================================== -->
+
+        <section id="faculty">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        FACULTY
+                    </span>
+
+                    <h2>
+                        Department
+                        <strong>Leadership</strong>
+                    </h2>
+
+                    <p>
+                        Academic professionals supporting teaching,
+                        research and student development.
+                    </p>
+
+                </div>
+
+
+
+                <div class="faculty-grid">
+
+
+                    <article class="faculty">
+
+                        <div class="faculty-photo">
+                            👩‍🏫
+                        </div>
+
+                        <div class="faculty-info">
+
+                            <h3>
+                                Mrs. T. Geetha
+                            </h3>
+
+                            <span class="designation">
+                                Head of the Department
+                            </span>
+
+                            <p>
+                                <strong>
+                                    Qualification:
+                                </strong>
+
+                                M.E., M.B.A., (Ph.D.)
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Department:
+                                </strong>
+
+                                Computer Science and Engineering
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Email:
+                                </strong>
+
+                                csehod@dsengg.ac.in
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="faculty">
+
+                        <div class="faculty-photo">
+                            👩‍🏫
+                        </div>
+
+                        <div class="faculty-info">
+
+                            <h3>
+                                sowmiya
+                            </h3>
+
+                            <span class="designation">
+                                Assistant HOD
+                            </span>
+
+                            <p>
+                                <strong>
+                                    Research Areas:
+                                </strong>
+                            </p>
+
+                            <p>
+                                Network Security,
+                                Data Mining,
+                                Artificial Intelligence,
+                                Big Data
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Email:
+                                </strong>
+
+                                sowmiya.@dsengg.ac.in
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="faculty">
+
+                        <div class="faculty-photo">
+                            👨‍🏫
+                        </div>
+
+                        <div class="faculty-info">
+
+                            <h3>
+                                Mr.s.chinnadurai
+                            </h3>
+
+                            <span class="designation">
+                                Assistant Professor
+                            </span>
+
+                            <p>
+                                Faculty member in the Department of
+                                Computer Science and Engineering.
+                            </p>
+
+                            <p>
+                                Involved in academic and research activities.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FACILITIES
+        ===================================================== -->
+
+        <section id="facilities">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        LABORATORIES & FACILITIES
+                    </span>
+
+                    <h2>
+                        Learn Through
+                        <strong>Practice</strong>
+                    </h2>
+
+                    <p>
+                        Well-equipped laboratories support practical,
+                        project-based and experiential learning.
+                    </p>
+
+                </div>
+
+
+
+                <div class="grid-3">
+
+
+                    <article class="facility">
+
+                        <div class="facility-icon">
+                            💻
+                        </div>
+
+                        <h3>
+                            Programming Lab
+                        </h3>
+
+                        <p>
+                            Practical programming and problem-solving
+                            environment for developing software skills.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="facility">
+
+                        <div class="facility-icon">
+                            🗄️
+                        </div>
+
+                        <h3>
+                            Database Management Lab
+                        </h3>
+
+                        <p>
+                            Practical learning in database design,
+                            SQL and database management systems.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="facility">
+
+                        <div class="facility-icon">
+                            📊
+                        </div>
+
+                        <h3>
+                            Data Analytics Lab
+                        </h3>
+
+                        <p>
+                            Learning environment for data analysis,
+                            visualization and big data technologies.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="facility">
+
+                        <div class="facility-icon">
+                            🌐
+                        </div>
+
+                        <h3>
+                            Computer Networks Lab
+                        </h3>
+
+                        <p>
+                            Practical learning of computer networks,
+                            communication and network technologies.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="facility">
+
+                        <div class="facility-icon">
+                            📱
+                        </div>
+
+                        <h3>
+                            Mobile Application Development Lab
+                        </h3>
+
+                        <p>
+                            Hands-on development of mobile applications
+                            and modern software solutions.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="facility">
+
+                        <div class="facility-icon">
+                            🤖
+                        </div>
+
+                        <h3>
+                            AI & Emerging Technologies
+                        </h3>
+
+                        <p>
+                            Learning and research opportunities in AI,
+                            machine learning, IoT, blockchain and cloud
+                            computing.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             RESEARCH
+        ===================================================== -->
+
+        <section id="research">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        RESEARCH & CONSULTANCY
+                    </span>
+
+                    <h2>
+                        Explore
+                        <strong>Emerging Technologies</strong>
+                    </h2>
+
+                    <p>
+                        The department encourages research and innovation
+                        across modern computing domains.
+                    </p>
+
+                </div>
+
+
+
+                <div class="research-grid">
+
+
+                    <article class="research-card">
+
+                        <div>🤖</div>
+
+                        <h3>
+                            Artificial Intelligence
+                        </h3>
+
+                    </article>
+
+
+
+                    <article class="research-card">
+
+                        <div>🧠</div>
+
+                        <h3>
+                            Machine Learning
+                        </h3>
+
+                    </article>
+
+
+
+                    <article class="research-card">
+
+                        <div>☁️</div>
+
+                        <h3>
+                            Cloud Computing
+                        </h3>
+
+                    </article>
+
+
+
+                    <article class="research-card">
+
+                        <div>🔐</div>
+
+                        <h3>
+                            Cybersecurity
+                        </h3>
+
+                    </article>
+
+
+
+                    <article class="research-card">
+
+                        <div>📊</div>
+
+                        <h3>
+                            Data Science
+                        </h3>
+
+                    </article>
+
+
+
+                    <article class="research-card">
+
+                        <div>🔗</div>
+
+                        <h3>
+                            Blockchain
+                        </h3>
+
+                    </article>
+
+
+
+                    <article class="research-card">
+
+                        <div>📡</div>
+
+                        <h3>
+                            Internet of Things
+                        </h3>
+
+                    </article>
+
+
+
+                    <article class="research-card">
+
+                        <div>⚛️</div>
+
+                        <h3>
+                            Quantum Computing
+                        </h3>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ACHIEVEMENTS
+        ===================================================== -->
+
+        <section id="achievements">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span style="color:#8cf3fa;">
+                        DEPARTMENT HIGHLIGHTS
+                    </span>
+
+                    <h2 style="color:white;">
+                        CSE at a
+                        <strong>Glance</strong>
+                    </h2>
+
+                </div>
+
+
+
+                <div class="achievement-grid">
+
+
+                    <div class="achievement">
+
+                        <strong>
+                            2001
+                        </strong>
+
+                        <p>
+                            Department Established
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="achievement">
+
+                        <strong>
+                            180
+                        </strong>
+
+                        <p>
+                            B.E. CSE Intake
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="achievement">
+
+                        <strong>
+                            18
+                        </strong>
+
+                        <p>
+                            M.E. CSE Intake
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="achievement">
+
+                        <strong>
+                            2024
+                        </strong>
+
+                        <p>
+                            NBA Accreditation
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             EVENTS
+        ===================================================== -->
+
+        <section id="events">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        DEPARTMENT ACTIVITIES
+                    </span>
+
+                    <h2>
+                        Academic &
+                        <strong>Student Activities</strong>
+                    </h2>
+
+                    <p>
+                        The department conducts technical activities,
+                        faculty development programmes, student enrichment
+                        programmes and alumni interactions.
+                    </p>
+
+                </div>
+
+
+
+                <div class="events">
+
+
+                    <article class="event">
+
+                        <div class="date">
+
+                            <strong>
+                                AI
+                            </strong>
+
+                            <span>
+                                FDP
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Deep Learning Faculty Development Programme
+                            </h3>
+
+                            <p>
+                                Faculty Development Programme conducted
+                                on Deep Learning.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="event">
+
+                        <div class="date">
+
+                            <strong>
+                                AI
+                            </strong>
+
+                            <span>
+                                TOOLS
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Productivity AI Tools
+                            </h3>
+
+                            <p>
+                                Student enrichment programme introducing
+                                productivity-focused AI tools.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="event">
+
+                        <div class="date">
+
+                            <strong>
+                                WEB
+                            </strong>
+
+                            <span>
+                                TECH
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                HTML & Microsoft Fabric
+                            </h3>
+
+                            <p>
+                                Student enrichment activity covering
+                                Microsoft Fabric and HTML.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="event">
+
+                        <div class="date">
+
+                            <strong>
+                                IT
+                            </strong>
+
+                            <span>
+                                TALK
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                IT Industry in India – Alumni Interaction
+                            </h3>
+
+                            <p>
+                                Alumni interaction focused on careers and
+                                opportunities in the Indian IT industry.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             STUDENT PROJECTS
+        ===================================================== -->
+
+        <section id="projects">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        STUDENT INNOVATION
+                    </span>
+
+                    <h2>
+                        Student
+                        <strong>Projects</strong>
+                    </h2>
+
+                    <p>
+                        The department maintains student project records
+                        and encourages practical innovation.
+                    </p>
+
+                </div>
+
+
+
+                <div class="grid-3">
+
+
+                    <article class="project">
+
+                        <div class="project-image">
+                            🤖
+                        </div>
+
+                        <div class="project-content">
+
+                            <small>
+                                ARTIFICIAL INTELLIGENCE
+                            </small>
+
+                            <h3>
+                                AI Based Application
+                            </h3>
+
+                            <p>
+                                A student innovation project using
+                                artificial intelligence to solve a
+                                real-world problem.
+                            </p>
+
+                            <div class="tags">
+
+                                <span>
+                                    Python
+                                </span>
+
+                                <span>
+                                    AI
+                                </span>
+
+                                <span>
+                                    Machine Learning
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="project">
+
+                        <div class="project-image">
+                            📊
+                        </div>
+
+                        <div class="project-content">
+
+                            <small>
+                                DATA SCIENCE
+                            </small>
+
+                            <h3>
+                                Data Analytics Dashboard
+                            </h3>
+
+                            <p>
+                                A project focused on analysing data and
+                                presenting useful insights through
+                                interactive dashboards.
+                            </p>
+
+                            <div class="tags">
+
+                                <span>
+                                    Python
+                                </span>
+
+                                <span>
+                                    SQL
+                                </span>
+
+                                <span>
+                                    Power BI
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="project">
+
+                        <div class="project-image">
+                            🌐
+                        </div>
+
+                        <div class="project-content">
+
+                            <small>
+                                WEB TECHNOLOGY
+                            </small>
+
+                            <h3>
+                                Smart Web Application
+                            </h3>
+
+                            <p>
+                                A web-based solution developed using
+                                modern programming and web technologies.
+                            </p>
+
+                            <div class="tags">
+
+                                <span>
+                                    HTML
+                                </span>
+
+                                <span>
+                                    CSS
+                                </span>
+
+                                <span>
+                                    Python
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             NOTICES
+        ===================================================== -->
+
+        <section id="notices">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        CSE UPDATES
+                    </span>
+
+                    <h2>
+                        Notices &
+                        <strong>Announcements</strong>
+                    </h2>
+
+                </div>
+
+
+
+                <div class="notices">
+
+
+                    <article class="notice">
+
+                        <div class="notice-icon">
+                            📢
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                CSE Examination Notifications
+                            </h3>
+
+                            <p>
+                                Check the department for latest examination
+                                schedules and academic notifications.
+                            </p>
+
+                        </div>
+
+                        <small>
+                            Notice
+                        </small>
+
+                    </article>
+
+
+
+                    <article class="notice">
+
+                        <div class="notice-icon">
+                            💼
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Internship Opportunities
+                            </h3>
+
+                            <p>
+                                Students can follow department announcements
+                                for internship and industry opportunities.
+                            </p>
+
+                        </div>
+
+                        <small>
+                            Career
+                        </small>
+
+                    </article>
+
+
+
+                    <article class="notice">
+
+                        <div class="notice-icon">
+                            🎯
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Student Project Activities
+                            </h3>
+
+                            <p>
+                                Project reviews and student innovation
+                                activities are conducted by the department.
+                            </p>
+
+                        </div>
+
+                        <small>
+                            Projects
+                        </small>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTACT
+        ===================================================== -->
+
+        <section id="contact">
+
+            <div class="container">
+
+
+                <div class="heading">
+
+                    <span>
+                        CONTACT CSE
+                    </span>
+
+                    <h2>
+                        Get in
+                        <strong>Touch</strong>
+                    </h2>
+
+                    <p>
+                        Contact the Department of Computer Science and
+                        Engineering for academic enquiries.
+                    </p>
+
+                </div>
+
+
+
+                <div class="contact-grid">
+
+
+                    <div class="contact-info">
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                📍
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Department Address
+                                </h3>
+
+                                <p>
+
+                                    Dhanalakshmi Srinivasan Engineering
+                                    College,<br>
+
+                                    Thuraiyur Road,<br>
+
+                                    Perambalur – 621 212,<br>
+
+                                    Tamil Nadu, India.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                ✉
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    CSE HOD Email
+                                </h3>
+
+                                <p>
+                                    csehod@dsengg.ac.in
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                📞
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    College Phone
+                                </h3>
+
+                                <p>
+                                    +91 70944 33186
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                🌐
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Official Website
+                                </h3>
+
+                                <p>
+                                    www.dsengg.ac.in
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Map placeholder -->
+
+                    <div class="map">
+
+                        <div class="map-content">
+
+                            <div>
+                                📍
+                            </div>
+
+                            <h3>
+                                CSE Department
+                            </h3>
+
+                            <p>
+                                Dhanalakshmi Srinivasan Engineering College
+                            </p>
+
+                            <a
+                                href="https://www.google.com/maps/search/?api=1&query=Dhanalakshmi+Srinivasan+Engineering+College+Perambalur"
+                                target="_blank"
+                                class="btn primary">
+
+                                Open Google Maps
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <div class="container footer-grid">
+
+
+            <div>
+
+                <div class="logo">
+
+                    <div class="logo-box">
+                        CSE
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Dhanalakshmi Srinivasan
+                            Engineering College
+                        </h3>
+
+                        <p>
+                            Department of CSE
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <p style="margin-top:20px;">
+
+                    Department of Computer Science and Engineering,
+                    Dhanalakshmi Srinivasan Engineering College,
+                    Perambalur.
+
+                </p>
+
+
+                <div class="social">
+
+                    <a href="#">
+                        f
+                    </a>
+
+                    <a href="#">
+                        in
+                    </a>
+
+                    <a href="#">
+                        X
+                    </a>
+
+                    <a href="#">
+                        ◎
+                    </a>
+
+                    <a href="#">
+                        ▶
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="#about">
+                    About CSE
+                </a>
+
+                <a href="#faculty">
+                    Faculty
+                </a>
+
+                <a href="#programs">
+                    Programmes
+                </a>
+
+                <a href="#facilities">
+                    Facilities
+                </a>
+
+                <a href="#research">
+                    Research
+                </a>
+
+            </div>
+
+
+
+            <div>
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    📍 Thuraiyur Road,
+                    Perambalur – 621 212
+                </p>
+
+                <p>
+                    ✉ csehod@dsengg.ac.in
+                </p>
+
+                <p>
+                    📞 +91 70944 33186
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © 2026 Department of Computer Science and Engineering,
+                Dhanalakshmi Srinivasan Engineering College.
+                All Rights Reserved.
+
+            </p>
+
+        </div>
+
+    </footer>
+
 
 </body>
+
 </html>
+
+
+
+           
